@@ -8,10 +8,12 @@ This guide focuses heavily into some [basic concepts][1] please make sure that y
 This repository has a sub folder for each one of the main [[AWS]] services, with an special folder for [basic concepts][1], you can jump right into a folder, or you follow along from this index file, in any case, if you want to jump ahead, good luck, and may the force be with you :wink:.
 
 # History
-As an small history lesson, this is how [[AWS]] was borned:
-> sdasdasdasdasdasd
+For reference, this is how [[AWS]] [history started][8]:
+> In November 2004, the first AWS service launched for public usage: Simple Queue Service (SQS).[13] Thereafter Pinkham and lead developer Christopher Brown developed the Amazon EC2 service, with a team in Cape Town, South Africa.
+> 
+> Amazon Web Services was officially re-launched on March 14, 2006, combining the three initial service offerings of Amazon S3 cloud storage, SQS, and EC2. The AWS platform finally provided an integrated suite of core online services, as Chris Pinkham and Benjamin Black had proposed back in 2003,
 
-It grow to be named as one of the "defacto" standards for cloud computing, until other competitors ([[GCP]], [[Azure]], [[Alibaba]], etc) appeared.
+From 2006 to this part it has grown to be named as one of the "defacto" standards for cloud computing, until other competitors ([[GCP]], [[Azure]], [[Alibaba]], etc) appeared.
 
 # [AWS Services][2]
 Here's a small list of [[AWS]] that we will be reviewing in this repository:
@@ -47,3 +49,5 @@ I really hope that this repositry helps you :hugs:, have a safe journey navigati
 [5]: aws_service_list.md
 [7]: https://aws.amazon.com/getting-started/fundamentals-core-concepts/?e=gs2020&p=gsrc
 [6]: https://aws.amazon.com/architecture/well-architected/?e=gs2020&p=fundcore
+[8]: https://en.wikipedia.org/wiki/Amazon_Web_Services#History
+
