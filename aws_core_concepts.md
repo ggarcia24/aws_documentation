@@ -18,7 +18,7 @@ Here's a list of the AWS Regions available in June 2020:
 
 Services and Resources **are not replicated across AWS Regions unless you specifically do it so** this means that if one of the AZ where your application is running has a failure, you application will run into failure, that's why [[AWS]] suggest that services that need to be [highly available][7] to be deployed in more than one (and at minimum 3) AZ.
 
-For this types of changes, it usually means that you need to make changes and to addapt for that in your [application architecture][8], and apply some common [design patterns][9].
+For this types of changes, it usually means that you need to make changes and to adapt for that in your [application architecture][8], and apply some common [design patterns][9].
 
 There's more information about this topic in the [Relational Database Service][10] (RDS for short) [user guide][11] that I suggest you to read in case you need more information.
 
