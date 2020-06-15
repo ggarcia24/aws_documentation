@@ -22,6 +22,29 @@ For this types of changes, it usually means that you need to make changes and to
 
 There's more information about this topic in the [Relational Database Service][10] (RDS for short) [user guide][11] that I suggest you to read in case you need more information.
 
+# Amazon Resource Name (ARN)
+Amazon Resource Names (ARNs) uniquely identify AWS resources, it's a string that contains the following:
+
+```text
+arn:partition:service:region:account-id:resource-id
+arn:partition:service:region:account-id:resource-type/resource-id
+arn:partition:service:region:account-id:resource-type:resource-id
+```
+
+* `arn`: All ARNs start with the string "arn"
+* `partition`: The partition in which the resource is located. A partition is a group of AWS Regions. Each AWS account is scoped to one partition. The following are the supported partitions:
+	*	aws - AWS Regions
+	* aws-cn - AWS China Regions
+	* aws-us-gov - AWS GovCloud (US) Regions
+* service: The service namespace that identifies the AWS product. For example, s3 for Amazon S3 resources.
+* region: The Region. For example, us-east-2 for US East (Ohio).
+* account-id: The ID of the AWS account that owns the resource, without the hyphens. For example, 123456789012.
+* resource-id: The resource identifier. This part of the ARN can be the name or ID of the resource or a resource path. For example, user/Bob for an [IAM][13] user or instance/i-1234567890abcdef0 for an EC2 instance. Some resource identifiers include a parent resource (sub-resource-type/parent-resource/sub-resource) or a qualifier such as a version (resource-type:resource-name:qualifier).
+
+
+
+https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html
+
 # What's next
 Head over to [aws core services][12]
 
@@ -35,7 +58,8 @@ Head over to [aws core services][12]
 [7]: basic_concepts/high_availability.md
 [8]: basic_concepts/architecture.md
 [9]: basic_concepts/design_patterns.md
-[10]: rds/index.md
+[10]: database/RDS.md
 [11]: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.RegionsAndAvailabilityZones.html
 [12]: aws_core_services.md
+[13]: security_identity_and_compliance/IAM.md
 [^1]: This deployments and infrastructure will be handled by [[AWS]], as part of their service offering, that means that a lot of the costs, and time required will be offloaded from the people using the service, hence being able to focus exclusively on the actual application/service that they are developing.
