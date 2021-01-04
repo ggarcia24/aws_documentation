@@ -1,6 +1,0 @@
-
-# RDS
-
-# DynamoDB
-
-# ElasticCache

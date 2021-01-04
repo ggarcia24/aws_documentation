@@ -1,7 +1,7 @@
 # AWS Core Concepts
 [[AWS]] is a [Cloud Provider][0], that means that it offers many services to help different organizations with their [it infrastructure][1] or [processes][2].
 
-This services are built inside [datacenters][3] connected by [computer network][4] it means that the services that you access in [[AWS]] will be bound to a certain location, because in the end this services require some [infrastructure][1] that needs to be [deployed][4][^1] and phisically "living" somewhere.
+This services are built inside [datacenters][3] connected by [computer network][4] it means that the services that you access in [[AWS]] will be bound to a certain location, because in the end this services require some [infrastructure][1] that needs to be [deployed][4][^1] and physically "living" somewhere.
 
 Services in [[AWS]] are offered depending on:
 - Global availability: Service is available without restrictions across all [AWS Regions](#AWS-Regions)
