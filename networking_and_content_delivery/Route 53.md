@@ -11,4 +11,6 @@ cards-deck: AWS::Networking & Content Delivery::Route 53
 
 ## Security
 
+## Notes
+
 ## Questions / Flashcards

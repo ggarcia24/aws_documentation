@@ -14,9 +14,9 @@ https://docs.aws.amazon.com/vpc/index.html
 
 ## Features
 
-- Allows you to expose a Network Load Balancer to thousands of VPCs in your account or in other accounts using VPC Endpoint Services (Private Link)
+- Allows you to expose a [[EC2#Network Load Balancer]] to thousands of VPCs in your account or in other accounts using VPC Endpoint Services (Private Link)
 - You can connect multiple VPCs (even from different accounts) together using VPC Peering as long as there's no overlapping of the CIDR between any of them
-- You can log all the traffic occurring on a VPC to [[S3]] or [[CloudWatch]] using Flow Logs
+- Flow Logs: log all the traffic to [[S3]] or [[CloudWatch]] ^2026c9
 - Allows you to create Site-to-Site VPN connections (using internet) to connect a Private Datacenter to a VPC 
 - By mindful about overlapping IP ranges, specially when connecting different networks with your VPC
 
@@ -42,7 +42,7 @@ https://docs.aws.amazon.com/vpc/index.html
 
 ### Service Endpoints
 
-- You could use IAM Policies in VPC Endpoints to add an extra level of control access to this endpoint
+- You could use [[IAM]] Policies in VPC Endpoints to add an extra level of control access to this endpoint
 
 ### NAT Gateways
 
@@ -55,8 +55,8 @@ https://docs.aws.amazon.com/vpc/index.html
 
 ### Security Groups
 
-- Can act as firewalls outside EC2 instances an other services
-- Can be attached to multiple EC2 instances and EC2 instances can have multiple SGs
+- Can act as firewalls outside [[EC2]] instances an other services
+- Can be attached to multiple [[EC2]] instances and [[EC2]] instances can have multiple SGs
 - Can reference other security groups
 - Outbound rules are stateful meaning that it will work even if there's a denying rule as long as it part of an incoming rule 
 - By default all traffic inbound is denied and all traffic outbound is allowed
@@ -70,7 +70,7 @@ https://docs.aws.amazon.com/vpc/index.html
 - Can be used to simplify network topologies
 - Is a Star Connection to have transitive peering between thousands of VPCs and on-premises
 - hub-and-spoke connection
-- can be shared cross-account using [Resource Access Manager][4]
+- can be shared cross-account using [[RAM]]
 - You can peer Transit Gateways across regions
 
 ### Traffic Mirroring
@@ -79,7 +79,7 @@ https://docs.aws.amazon.com/vpc/index.html
 
 - https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Security.html
 
-[4]: ../security_identity_and_compliance/RAM.md
+## Notes
 
 ## Questions / Flashcards
 

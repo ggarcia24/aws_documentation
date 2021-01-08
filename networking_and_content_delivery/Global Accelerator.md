@@ -11,16 +11,18 @@ cards-deck: AWS::Networking & Content Delivery::Global Accelerator
 - Offers consistent performance
 - Leverage the AWS internal network to route the request to the application from the EDGE location
 - Supports
-    - Elastic IP
-    - EC2 Instances
-    - ALB
-    - NLB
+    - [[VPC#Elastic IPs]]
+    - [[EC2]] Instances
+    - [[EC2#Application Load Balancers]]
+    - [[EC2#Network Load Balancers]]
     - public or private
 - Perform Health Checks to failover to other regions in less than 1min
 
 ## Security
 
-- DDoS protection through AWS Shield
+- DDoS protection through [[AWS Shield]]
+
+## Notes
 
 ## Questions / Flashcards
 

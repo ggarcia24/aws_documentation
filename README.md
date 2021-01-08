@@ -2,9 +2,11 @@
 updated: '2020-12-27'
 ---
 
-# Introduction
+# Amazon Web Services
 
-This is an repository to hold all the knowledge that I have related to AWS and taking some of it's certifications exams, mostly is a way for me to do a [[brain dump]] on certain topics, but also it's a way to share what I have, I use [Obsidian][0] as a knowledge management tool, so please keep in to account that I might have forgotten to include something into this repository, or that the formatting may be odd, so please create an issue (or a PR) to this repository so that I can review and fix any problem you might found.
+## Introduction
+
+This is an repository to hold all the knowledge that I have related to AWS and taking some of it's certifications exams, mostly is a way for me to do a [[brain dump]] on certain topics, but also it's a way to share what I have, I use [Obsidian][0] as a knowledge management tool, so please keep in to account that I might have forgotten to include something into this repository, or that the formatting may be odd, so please create an issue (or a PR) to this repository so that I can review and fix any problem you might find.
 
 ## Foreword
 
@@ -14,7 +16,7 @@ This guide assumes you have some [basic concepts][1], please make sure that you 
 
 This repository has a sub folder for each one of the main [[AWS]] services, with an special folder for [basic concepts][1], you can jump right into a folder, or you follow along from this index file, in any case, if you want to jump ahead, good luck, and may the force be with you :wink:.
 
-# History
+## History
 
 For reference, this is how [[AWS]] [history started][8]:
 
@@ -24,7 +26,7 @@ For reference, this is how [[AWS]] [history started][8]:
 
 From 2006 to this part it has grown to be named as one of the "defacto" standards for cloud computing, until other competitors ([[GCP]], [[Azure]], [[Alibaba]], etc) appeared.
 
-# [AWS Services][2]
+## [AWS Services][2]
 
 Here's a small list of [[AWS]] that we will be reviewing in this repository:
 
@@ -42,7 +44,7 @@ There's some information that doesn't fit anywhere but in this introduction thou
 
 We will not dive too much on each particular subject as they can be really big, in turn they will be mentioned in each of the service on how to address each one of them.
 
-# What's next
+## What's next
 
 So, how do you continue navigating this repository? As a suggestion you can begin this journey at any of the following links, the suggested order is from top to bottom, there will be a "What's next" section in each page providing a path to follow:
 
