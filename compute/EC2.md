@@ -9,18 +9,23 @@ Elastic Cloud Compute
 
 ## Features
 
-- Launch Virtual Machines
-- Store data on virtual drives
+- Manage Virtual Machines
+- Manage Virtual drives (Block)
 - Load Balancers
-- Autoscaling groups
-- Can customize instances by using EC2 User Data the first time first boots
+- Auto Scaling
 
 ### EC2 Instances
 
 - You can reduce pricing for very long running (minimum 1year) instances using Reserved Instances (but you will not be able to change instance type)
 - Scheduled reserved instances allows you to reduce costs based on a schedule
+- Can customize instances by using EC2 User Data the first time first boots
 
 ### EC2 Launch Templates
+
+- Can have multiple versions
+- Provision using on-demand or spot instances or a mix
+- Can use T2 unlimited burst feature
+- recommended by AWS 
 
 ### Reserved Instances
 
@@ -90,15 +95,90 @@ Elastic Cloud Compute
 
 - Please refer to [[VPC#Elastic IPs]] page
 
-### Load Balancers
+### Elastic Load Balancers
+
+- Supports Cross-Zone load balancing to redirect traffic to all instances
+- Support Health Checks to know if they should forward traffic
+- Deregistration Delay
+    - Allow instances to finish processing requests before termination/unhealthy
+    - Beween 0 (disabled) to 3600 (300 default)
+- SSL/TLS
+    - Using [[ACM]]
+    - Using [[IAM]]
+    - Import
+- Can be
+    - Internal: Accesible only from your Private network
+    - External: Accessible from the public
+
+#### Classic Load Balancers
+
+- Fixed hostname i.e `xxxx.region.elb.amasonws.com`
+- Cross-Zone load balancing is disabled by default
+- Instances are "added" to the load balancer
+- Heath checks based on TCP or HTTP
+- SSL/TLS
+    - Single certificates (no Server Name Indication)
+- Uses [[VPC#Security Groups]]
+- Supports Stickiness
+- Support
+    - HTTP/HTTPS
+    - TCP
 
 #### Application Load Balancers
 
+- Fixed hostname i.e `xxxx.region.elb.amasonws.com`
+- Cross-Zone load balancing is enabled by default and cannot be disabled
+- Uses Target Groups to match instances
+- 400 ms latency
+- Health Checks are done at the Target Group level
+- Uses [[VPC#Security Groups]]
+- Supports Stickiness at the routing level
+- SSL/TLS
+    - Multiple certificates (Server Name Indication)
+- Routing is rule based
+    - Path in URL
+    - HTTP header
+    - HTTP request method
+    - Query Strings
+    - Source IP
+- Routing Actions
+    - Forward to
+    - Redirect to
+    - Fixed response
+- Support
+    - HTTP/HTTPS
+    - WebSocket
+
 #### Network Load Balancers
 
-### Autoscaling Groups
+- one static IP per AZ with [[VPC#Elastic IPs]] support
+- Cross-Zone load balancing is disabled by default
+- Handle millions of requests per second
+- 100 ms latency
+- Doesn't support [[VPC#Security Groups]]
+- You cannot change the AZ after created
+- SSL/TLS
+    - Multiple certificates (Server Name Indication)
+- Support
+    - TLS
+    - TCP
+    - UDP
 
-- You can configure scaling by policies:
+### Auto Scaling Groups
+
+- Allows automatic Scale Out / Scale In
+- Ensure minimum,desired,maximum instances running
+- Launch Template / Configuration
+    - AMI + Instance Type
+    - EC2 User Data
+    - EBS Volumes
+    - Security Groups
+    - SSH Key Pair
+- Automatically register instances to Load Balancers / Target Groups
+- Terminates instances if marked as unhealthy by the Health Check
+    - EC2 (default)
+    - ELB (optional)
+- Scaling policies
     - Target Tracking
         - Maintain metric at certain value i.e CPU Usage always 50%
     - Simple / Step Scaling
@@ -106,10 +186,18 @@ Elastic Cloud Compute
     - Schedule
         - You know in advance when the peaks are i.e Monday 9AM
 - You can use Scaling Cooldowns to control how fast the scaling activity affects your counters, the default is 300 sec
+- Termination Policy
+    - Default: Remove the oldest launch configuration from the AZ with the higher number of instances
+- Lifecycle Hooks
+    - Instance Launching
+    - Instance Terminating
 
 ## Security
 
 ## Notes
+
+- Load balancers can scale but are not instantaneous, some times you'll need to contact AWS for a "warm-up"
+- To update an Auto Scaling  Group you must provide a new launch configuration
 
 ## Questions / Flashcards
 
@@ -142,5 +230,11 @@ Elastic Cloud Compute
     - Throughput is 12Mib/s per TiB, max throughput 250Mib/s - can burst
     - Min size is 500Gib, Max size is 16Tib
 ^1609849552266
-- What are the supported types of Scaling Policies in an Autoscaling Group?:: There are 4 types of polices: Target Tracking, Simple Scaling, Step Scaling and Scheduled
+- Are changes on the launch configuration reflected on the Auto Scaling Group?:: No, to update an Auto Scaling group you need create a new launch configuration
+^1610295886405
+- What are the supported types of Scaling Policies in an Auto Scaling Group?:: There are 4 types of polices: Target Tracking, Simple Scaling, Step Scaling and Scheduled
 ^1609851205223
+- Can you use a launch configuration to provision capacity using Spot instances and  On-Demand Instances?:: No, you cannot use a launch configuration to provision capacity across multiple instance types using both On-Demand Instances and Spot Instances
+^1649189294102
+- If I have sever-bound licenses (like Windows Server) how can I use them in AWS?:: The only option that supports sever-bound licenses Dedicated Hosts to launch Amazon EC2 instances on physical servers
+^1649194823782

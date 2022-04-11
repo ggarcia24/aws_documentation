@@ -1,6 +1,6 @@
 ---
-updated: '2021-01-05'
 cards-deck: AWS::Application Integration::SQS
+updated: '2021-01-05'
 
 ---
 

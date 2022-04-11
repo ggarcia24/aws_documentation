@@ -5,41 +5,97 @@ cards-deck: AWS::Database::RDS
 
 # RDS
 
-Amazon RDS Multi-AZ deployments provide enhanced availability and durability for Database (DB) Instances, making them a natural fit for production database workloads. When you provision a Multi-AZ DB Instance, Amazon RDS automatically creates a primary DB Instance and synchronously replicates the data to a standby instance in a different Availability Zone (AZ). Each AZ runs on its own physically distinct, independent infrastructure, and is engineered to be highly reliable.
-
-![https://img-a.udemycdn.com/redactor/raw/2020-07-16_13-19-48-136ac1cc55a1697f6dbb6f5e184fb02c.png?4CZ5DPD0lrQP8WvNmO_uM41q22VreIVoLCQ5Y2PJD49TA5y9JWf0MjwNRMxvmsVIp7ClGGAFDkOxe5yrUyUO7dDrO-pY7j72H2fd2IMaucTyl_sjVY0nrM4b_izRXVCPlMd4tlCqwMwiswng7N8fBSYNJ2yzB5Qv_IlMoHEx1JuraCnC](https://img-a.udemycdn.com/redactor/raw/2020-07-16_13-19-48-136ac1cc55a1697f6dbb6f5e184fb02c.png?4CZ5DPD0lrQP8WvNmO_uM41q22VreIVoLCQ5Y2PJD49TA5y9JWf0MjwNRMxvmsVIp7ClGGAFDkOxe5yrUyUO7dDrO-pY7j72H2fd2IMaucTyl_sjVY0nrM4b_izRXVCPlMd4tlCqwMwiswng7N8fBSYNJ2yzB5Qv_IlMoHEx1JuraCnC)
-
-In case of an infrastructure failure, Amazon RDS performs an automatic failover to the standby (or to a read replica in the case of Amazon Aurora), so that you can resume database operations as soon as the failover is complete. Since the endpoint for your DB Instance remains the same after a failover, your application can resume database operation without the need for manual administrative intervention.
-
-In this scenario, the best RDS configuration to use is an Oracle database in RDS with Multi-AZ deployments to ensure high availability even if the primary database instance goes down
+Relational Database Service
 
 ## Features
 
+- Managed DB service for SQL Databases
+- Backups
+    - Can be disabled
+    - retention time min 0, max 35 days default 7
+    - Continuous
+    - Daily full backup (during maintenance window)
+    - Transaction logs are backed up every 5 minutes
+- Support manually taking DB snapshots and retaining for as long as you want
+- Point in Time Restore: Restore to specific timestamp
+- Read replicas ^7b0455
+    - Asynchronous replication
+    - For
+        - scaling reads horizontally
+        - executing reports without affecting "master" db
+    - Location
+        - Within AZ: Avoid network costs
+        - Cross AZ / Cross Region: Have to pay extra network costs for data transfers
+    - Can be promoted to their own DB
+- Multi-AZ (High Availability / Disaster Recovery)
+    - Synchronous replication with standby instances
+    - Automatic failover to standby instance
+    - single DNS name
+- Enhanced monitoring metrics: CPU usage of process and threads
+- #Monitoring and #Logging through [[CloudWatch]]
+- Maintenance windows for upgrades
+- Scaling capability
 - Engines Supported
-    - MySQL
-        - Supports [[IAM]] authentication
-    - PostgreSQL
-        - Supports [[IAM]] authentication
-    - Oracle
     - Aurora
-    - 
-- Supports Multi-AZ deployments to provide HA
+    - MySQL
+    - MariaDB
+    - PostgreSQL
+    - Oracle
+    - Microsoft SQL Server
+
+### Aurora
+
+- Proprietary DB engine
+- Supports Postgres and MySQL
+- Automatically grow storage from 10Gb to 64Tb (10Gb increments)
+- HA native
+    - store 6 copies of data across 3 AZ
+    - Automated failover
+    - Supports Auto Scaling
+- Type
+    - Regional DB
+        - Read Replicas 15 max
+    - Aurora Global Database
+        - 1 primary region / 5 secondary read-only regions
+        - 16 read replicas per secondary region
+        - Cross Region Read Replicas
+        - Promote another region as primary in < 1 min (RTO)
+        - Asynchronous replication with up to 1 sec lag 
+- Working mode
+    - One Writer / Multiple readers
+    - One Writer / Multiple readers - parallel query
+    - Multiple writers
+    - #Serverless
+
+### MySQL
+
+- Supports [[IAM]] authentication
+- Read Replicas 5 max
+
+### MariaDB
+
+### PostgreSQL
+
+- Supports [[IAM]] authentication
+
+### Oracle
+
+#### Microsoft SQL Server
 
 ## Security
 
-# Aurora Global
-
-https://aws.amazon.com/rds/aurora/global-database/
-
-https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-global-database.html
-
-What relational database and come up with a disaster recovery plan to mitigate multi-region failure. The solution requires a Recovery Point Objective (RPO) of 1 second and a Recovery Time Objective (RTO) of less than 1 minute?
-
-**Amazon Aurora Global Database** is designed for globally distributed applications, allowing a single Amazon Aurora database to span multiple AWS regions. It replicates your data with no impact on database performance, enables fast local reads with low latency in each region, and provides disaster recovery from region-wide outages.
-
-Aurora Global Database supports storage-based replication that has a latency of less than 1 second. If there is an unplanned outage, one of the secondary regions you assigned can be promoted to read and write capabilities in less than 1 minute. This feature is called Cross-Region Disaster Recovery. An RPO of 1 second and an RTO of less than 1 minute provides you a strong foundation for a global business continuity plan.
+- Uses [[VPC#Security Groups]] to control what IP can connect
+- In-flight encryption with SSL / TLS
+- At rest encryption with [[KMS]]
 
 ## Notes
+
+- To encrypt an existent un-encrypted DB:
+    1. Create a snapshot of the DB
+    2. Copy the snapshot
+    3. Enable encryption for the snapshot
+    4. Create a new DB from encrypted snapshot
+    5. Migrate application
 
 ## Questions / Flashcards
 

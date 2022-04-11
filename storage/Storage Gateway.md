@@ -30,3 +30,6 @@ cards-deck: AWS::Storage::Storage Gateway
 ## Notes
 
 ## Questions / Flashcards
+
+- How can you allow an [[S3]] bucket to be presented as a Local Network Drive?:: You can configure File Gateway to allow SMB/NFS access to S3 buckets 
+^1610197118285

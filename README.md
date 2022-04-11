@@ -6,7 +6,7 @@ updated: '2020-12-27'
 
 ## Introduction
 
-This is an repository to hold all the knowledge that I have related to AWS and taking some of it's certifications exams, mostly is a way for me to do a [[brain dump]] on certain topics, but also it's a way to share what I have, I use [Obsidian][0] as a knowledge management tool, so please keep in to account that I might have forgotten to include something into this repository, or that the formatting may be odd, so please create an issue (or a PR) to this repository so that I can review and fix any problem you might find.
+This is an repository to hold all the knowledge that I have related to AWS and taking some of it's certifications exam, mostly is a way for me to do a [[brain dump]] on certain topics, but also it's a way to share what I have, I use [Obsidian][0] as a knowledge management tool, so please keep in to account that I might have forgotten to include something into this repository, or that the formatting may be odd, so please create an issue (or a PR) to this repository so that I can review and fix any problem you might find.
 
 ## Foreword
 

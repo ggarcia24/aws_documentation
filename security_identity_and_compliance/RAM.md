@@ -10,6 +10,8 @@ Resource Access Manager
 
 ## Features
 
+- A way to securely share resources with other AWS Accounts
+
 ## Security
 
 ## Notes

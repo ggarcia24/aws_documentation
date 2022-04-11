@@ -32,7 +32,7 @@ Reference:
 
 They usually have this format:
 
-```json
+```js
 {
   "Version": "2012-10-17",
   "Statement": [
@@ -52,15 +52,28 @@ And there's a huge [library of examples that you can browse to see][4], but as y
 ## Features
 
 - Centralized control of your AWS account permissions
+- It's a Global Service
 - It's Integrated with [many AWS services][5]
-- Offers permissions with granularity to the action (read, update, etc)
 - Has a set of Predefined "managed policies"
-- Supports Multi-Factor Authentication
-- Provide temporary access for users/devices and services where necessary
+- Offers permissions with granularity to the action (read, update, etc)
 - By default all request are denied, you need to explicitly allow any permissions, an explicit deny in any policy overrides any allows.
+
+### Authentication
+
+- Can setup a password policy to require extra precautions
+- Multi-Factor Authentication
+- Supports
+    - Users: usually a physical person
+    - Groups: contains users
+    - Roles: usually assigned to AWS services
+- Provide temporary access for users/devices and services where necessary
 - Identity Federation [[SAML]], [[Cognito]]
-- Set up password rotation policy
 - Support PCI DSS compliance
+
+### Authorization
+
+- Resource Policies
+    - [[S3]] Bucket Policies
 
 ## Security
 
@@ -68,9 +81,10 @@ And there's a huge [library of examples that you can browse to see][4], but as y
 
 - **Never write, commit or share your IAM credentials**, store them securely
 - **Don't ever use your root account**, create a new user as soon as you have logged in and configured all the suggested AWS security checks (MFA, etc)
-- Give users the **least amount of privileges** possible
-- Create **ONE IAM user per Physical Person**
-- Create **ONE IAM role per Application**
+- Best Practices
+    - Give users the **least amount of privileges** possible
+    - Create **ONE IAM user per Physical Person**
+    - Create **ONE IAM role per Application**
 - When you select policies for a user/group/role you can select specific policies or a job function, which is a policy designed to closely align to a common job in the IT industry, i.e: Database Administrator, Billing, Developer power-user, etc
 - The existence of an Organizations SCP, IAM permissions boundary, or a session policy overrides the allow. If one or more of these policy types exists, they must all allow the request. Otherwise, it is implicitly denied.
 - If you need to make a request in a different account, a policy in the other account must allow you to access the resource and the IAM entity that you use to make the request must have an identity-based policy that allows the request.

@@ -50,6 +50,14 @@ https://docs.aws.amazon.com/vpc/index.html
 - Linked to an specific Availability Zone
 - Are created in the Public Subnet
 - Requires configuring the Route Table in the Private Subnet
+- Doesn't support port forwarding
+- Cannot have security groups
+
+### NAT Instances
+
+- Can be used as a bastion host
+- Can have a security group
+- Supports port forwarding
 
 ### Network ACLs
 
@@ -109,3 +117,9 @@ https://docs.aws.amazon.com/vpc/index.html
 ^1609849371338
 - What could it be if an EC2 Instance in a private subnet without internet access could not connect to a Gateway VPC Endpoint i.e S3?:: Take into account that VPC Endpoints have their regions "hardcoded" that means that you are required to specify the region when interacting using API/CLI
 ^1609849371341
+- Can you attach a security group to a NAT Gateway?:: No, only NAT Instances support having a security group attached
+^1649190364806
+- Can you use a NAT Gateway as a Bastion Host?:: No, only NAT Instances can be used as a Bastion Host
+^1649190364811
+- Can you configure port forwarding in a NAT Gateway?:: No only NAT Instances support port forwarding
+^1649190364813

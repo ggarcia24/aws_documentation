@@ -1,5 +1,5 @@
 ---
-updated: '2021-01-05'
+updated: '2022-04-05'
 cards-deck: AWS::Analytics::Kinesis
 
 ---
@@ -8,28 +8,83 @@ cards-deck: AWS::Analytics::Kinesis
 
 ## Features
 
-- Managed alternative to Apache Kafka
-- Usefull for real-time systems
-- Data is replicated to 3 AZs
-- Data retention is 1 day by default (max 7days)
-- 3 Types
-    - Kinesis Streams: low latency streams
-    - Kinesis Analytics: perform analytics on streams using SQL
-    - Kinesis Firehose: put stream data into [[S3]], [[Amazon Redshift]], [[ElasticSearch]], [[Splunk]] 
-- Scales using SHARDs
-    - 1 SHARD = 1 MiB/1000 msgs write and 2Mib read
+- Useful for real-time systems
+
+### Kinesis Data Streams
+- Retention period is 1 day by default (max 365 days)
 - Ability to reprocess/replay data
-- Multiple consumers of the same stream
-- Real-time process with scale of throughput
 - Data inserted is immutable
-- Kinesis Client Library
-    - Enable consuming messages from Kinesis efficiently
-    - Supports
+- Multiple consumers of the same stream
+- Real-time (~200ms latency)
+- Manual scaling (shard splitting / merging)
+- Made of shards
+- Producers
+    - 1 MB/sec or 1000 msg/sec per shard
+    - AWS SDK
+    - Kinesis Producer Library
+    - Kinesis Agent
+- Consumers
+    - Types
+        - Shared: 2MB/sec between all of the consumers
+        - Enhanced: 2MB/sec per shard per consumer
+    - Kinesis Client Library
         - Java
         - Node
         - Python
         - Ruby
         - .Net
+    - AWS SDK
+    - Lambda
+    - [[#Kinesis Data Firehose]]
+    - [[#Kinesis Data Analytics]]
+
+### Kinesis Data Firehose
+- Store data 
+- Fully managed service
+- Batch writes 
+- Near realtime:
+    - 60 sec (minimum latency)
+    - 32Mb 
+- Producers
+    - 1 MB/sec
+    - AWS SDK
+    - Kinesis Producer Library
+    - Kinesis Agent
+    - [[#Kinesis Data Streams]]
+    - [[CloudWatch]]
+    - [[AWS IoT]]
+ - Supports Data transformation
+- Consumers
+    - AWS:
+        - [[S3]]
+        - [[Amazon Redshift]] (COPY through S3)
+        - [[ElasticSearch]]
+    - 3rd Party
+        - Datadog
+        - Splunk
+        - New relic
+        - mongoDB
+    - Custom Destination
+        - HTTP Endpoint
+ - Failed or All data can be put in S3
+
+### Kinesis Data Analytics
+- perform analytics on streams using SQL
+- Fully managed, automatic scaling
+- Real-time analytics
+- Sources
+    - [[#Kinesis Data Streams]]
+    - [[#Kinesis Data Firehose]]
+- Sinks
+    - [[#Kinesis Data Streams]]
+    - [[#Kinesis Data Firehose]]
+ - Use cases
+     - Time series analytics
+     - Real-time dashboards
+     - Real-time metrics
+
+### Kinesis Video Streams
+- capture, process and store video streams
 
 ## Security
 
@@ -45,5 +100,6 @@ cards-deck: AWS::Analytics::Kinesis
 
 ## Questions / Flashcards
 
-- What's the maximum retention period on a Kinesis Stream?:: Data can be retained for a maximum of 7 days
+- What's the maximum retention period on a Kinesis Data Stream?:: Data can be retained for a maximum of 365 days
 ^1610117701501
+- How can I improve the throughput in cases of multiple consumers or Kinesis Data Streams?:: Enable enhanced fanout feature     

@@ -14,8 +14,10 @@ Reference:
 
 ## Features
 
+- Enabled by default
 - Allows you to monitor AWS Services API/CLI/Console calls for auditing and compliance
 - Can be applied to all regions or a single region
+- Can put logs to [[CloudWatch]]
 
 ## Security
 
